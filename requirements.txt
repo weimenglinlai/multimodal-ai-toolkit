@@ -1,0 +1,39 @@
+# 任务3 · 依赖清单
+# 环境：Python 3.13.4 / Windows / RTX 4060 (CUDA 12.4)
+#
+# ⚠️ 本项目的 venv 用 --system-site-packages 创建，torch / transformers
+#    等已存在于系统的包会自动复用，不必重复安装。
+#
+# 安装（主环境）：
+#     venv\Scripts\python.exe -m pip install -r requirements.txt
+#
+# ChatTTS 需要独立环境（transformers 4.x），见 README 第三节。
+
+# --- 核心框架（系统已有，通常无需安装）---
+torch>=2.1.0
+torchvision
+transformers>=4.41.1
+numpy
+Pillow
+safetensors
+
+# --- 任务一：CLIP ---
+# 用 transformers 内置的 ChineseCLIPModel / CLIPModel，无需额外包
+
+# --- 任务二：Stable Diffusion ---
+diffusers>=0.30.0
+accelerate>=0.25.0
+huggingface_hub>=1.0,<2.0      # transformers 5.x 要求 <2.0，diffusers 新版要求 >=1.0
+
+# --- 任务三：Whisper ---
+openai-whisper>=20231117
+soundfile>=0.12.1
+sounddevice>=0.4.6
+zhconv>=1.4
+
+# --- 麦克风录音热键（实时识别用）---
+keyboard>=0.13.5
+pyaudio>=0.2.13                # Windows 装不上时用 sounddevice 兜底
+
+# --- 图像处理辅助 ---
+matplotlib>=3.7                # 如需画相似度对比图
